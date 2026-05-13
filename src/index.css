@@ -1,4 +1,9 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap');
 @import "tailwindcss";
+
+/* =========================
+   GLOBAL RESET
+========================= */
 
 *{
   margin:0;
@@ -11,7 +16,140 @@ html{
 }
 
 body{
-  font-family: Arial, Helvetica, sans-serif;
-  background:#ffffff;
-  color:#111827;
+  font-family: 'Inter', sans-serif;
+  background:#F8F4EC;
+  color:#1E1E1E;
+  overflow-x:hidden;
+}
+
+/* =========================
+   THEME VARIABLES
+========================= */
+
+:root{
+  --primary-green:#1F4D36;
+  --secondary-green:#2E6B4A;
+
+  --earth-brown:#7A5230;
+  --clay:#C26A3D;
+
+  --cream:#F8F4EC;
+  --light-cream:#FFFDF8;
+
+  --text-dark:#1E1E1E;
+  --text-light:#5F5F5F;
+
+  --border-color:#E8E0D4;
+
+  --section-padding:120px;
+  --container-width:1300px;
+
+  --transition:all 0.3s ease;
+}
+
+/* =========================
+   GLOBAL TYPOGRAPHY
+========================= */
+
+h1,h2,h3,h4,h5,h6{
+  font-family:'Playfair Display', serif;
+  line-height:1.2;
+  font-weight:700;
+  color:var(--primary-green);
+}
+
+p{
+  color:var(--text-light);
+  line-height:1.8;
+  font-size:16px;
+}
+
+/* =========================
+   GLOBAL UTILITIES
+========================= */
+
+.container-custom{
+  width:90%;
+  max-width:var(--container-width);
+  margin:auto;
+}
+
+.section-padding{
+  padding:var(--section-padding) 0;
+}
+
+.primary-btn{
+  background:var(--primary-green);
+  color:white;
+  padding:14px 30px;
+  border-radius:999px;
+  font-weight:600;
+  cursor:pointer;
+  transition:var(--transition);
+  border:none;
+}
+
+.primary-btn:hover{
+  background:var(--secondary-green);
+  transform:translateY(-2px);
+}
+
+.secondary-btn{
+  background:transparent;
+  border:1px solid var(--primary-green);
+  color:var(--primary-green);
+  padding:14px 30px;
+  border-radius:999px;
+  font-weight:600;
+  cursor:pointer;
+  transition:var(--transition);
+}
+
+.secondary-btn:hover{
+  background:var(--primary-green);
+  color:white;
+}
+
+.section-title{
+  font-size:clamp(2.5rem,5vw,4rem);
+  margin-bottom:20px;
+}
+
+.section-subtitle{
+  max-width:700px;
+  margin:auto;
+  text-align:center;
+}
+
+/* =========================
+   SCROLLBAR
+========================= */
+
+::-webkit-scrollbar{
+  width:10px;
+}
+
+::-webkit-scrollbar-track{
+  background:#EFE7DA;
+}
+
+::-webkit-scrollbar-thumb{
+  background:var(--primary-green);
+  border-radius:20px;
+}
+
+/* =========================
+   RESPONSIVE
+========================= */
+
+@media(max-width:768px){
+
+  :root{
+    --section-padding:80px;
+  }
+
+  p{
+    font-size:15px;
+  }
+
 }
