@@ -1,0 +1,190 @@
+.featured-rooms{
+  position:relative;
+  background:#FFFDF8;
+  overflow:hidden;
+}
+
+/* =========================
+   HEADER
+========================= */
+
+.featured-header{
+  text-align:center;
+  margin-bottom:100px;
+}
+
+.featured-header span{
+  display:inline-block;
+  padding:10px 18px;
+  border-radius:999px;
+  background:#EEF4EF;
+  color:var(--primary-green);
+  margin-bottom:25px;
+  letter-spacing:1px;
+  font-size:14px;
+}
+
+/* =========================
+   ROOMS
+========================= */
+
+.rooms-wrapper{
+  display:flex;
+  flex-direction:column;
+  gap:120px;
+}
+
+.room-card{
+  display:grid;
+  grid-template-columns:1.1fr 1fr;
+  gap:60px;
+  align-items:center;
+}
+
+.room-card.reverse{
+  grid-template-columns:1fr 1.1fr;
+}
+
+.room-card.reverse .room-image{
+  order:2;
+}
+
+.room-card.reverse .room-content{
+  order:1;
+}
+
+/* =========================
+   IMAGE
+========================= */
+
+.room-image{
+  position:relative;
+  overflow:hidden;
+  border-radius:40px;
+  height:650px;
+  box-shadow:0 20px 50px rgba(0,0,0,0.08);
+}
+
+.room-image img{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  transition:transform 0.7s ease;
+}
+
+.room-card:hover .room-image img{
+  transform:scale(1.05);
+}
+
+/* =========================
+   CONTENT
+========================= */
+
+.room-content{
+  position:relative;
+}
+
+.room-tag{
+  display:inline-block;
+  padding:10px 18px;
+  border-radius:999px;
+  background:#EEF4EF;
+  color:var(--primary-green);
+  margin-bottom:25px;
+  font-size:14px;
+  letter-spacing:1px;
+}
+
+.room-content h3{
+  font-size:3rem;
+  margin-bottom:25px;
+  line-height:1.1;
+}
+
+.room-content p{
+  margin-bottom:35px;
+  font-size:17px;
+}
+
+/* =========================
+   FEATURES
+========================= */
+
+.room-features{
+  display:flex;
+  flex-wrap:wrap;
+  gap:15px;
+  margin-bottom:40px;
+}
+
+.room-features span{
+  padding:12px 18px;
+  background:white;
+  border:1px solid var(--border-color);
+  border-radius:999px;
+  font-size:14px;
+  color:var(--text-dark);
+}
+
+/* =========================
+   BUTTONS
+========================= */
+
+.room-buttons{
+  display:flex;
+  gap:20px;
+  flex-wrap:wrap;
+}
+
+/* =========================
+   DECOR
+========================= */
+
+.room-bg-shape{
+  position:absolute;
+  width:500px;
+  height:500px;
+  border-radius:50%;
+  background:rgba(31,77,54,0.05);
+  left:-200px;
+  bottom:-100px;
+  filter:blur(60px);
+}
+
+/* =========================
+   RESPONSIVE
+========================= */
+
+@media(max-width:1200px){
+
+  .room-card,
+  .room-card.reverse{
+    grid-template-columns:1fr;
+  }
+
+  .room-card.reverse .room-image,
+  .room-card.reverse .room-content{
+    order:unset;
+  }
+
+}
+
+@media(max-width:768px){
+
+  .featured-header{
+    margin-bottom:70px;
+  }
+
+  .rooms-wrapper{
+    gap:80px;
+  }
+
+  .room-image{
+    height:420px;
+  }
+
+  .room-content h3{
+    font-size:2.3rem;
+  }
+
+}
