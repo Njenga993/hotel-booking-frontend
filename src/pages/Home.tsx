@@ -5,6 +5,7 @@ import FeaturedRooms from "../components/rooms/FeaturedRooms";
 import RestaurantExperience from "../components/restaurant/RestaurantExperience";
 import Experiences from "../components/experiences/Experiences";
 import Gallery from "../components/gallery/Gallery";
+import TestimonialsCTA from "../components/testimonials/TestimonialsCTA";
 
 const Home = () => {
   return (
@@ -16,7 +17,7 @@ const Home = () => {
       <RestaurantExperience />
       <Experiences />
       <Gallery />
-
+      <TestimonialsCTA />
     </MainLayout>
   );
 };
