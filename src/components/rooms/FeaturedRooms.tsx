@@ -1,146 +1,138 @@
 import { motion } from "framer-motion";
+import type { Transition } from "framer-motion";
 import "./featuredRooms.css";
+import Room1 from "../../assets/images/room1.jpeg";
+import Room2 from "../../assets/images/room2.jpeg";
 
-const rooms = [
+/* ============================================================
+   ANIMATION HELPERS
+============================================================ */
 
+const EASE: [number, number, number, number] = [0.22, 1, 0.36, 1];
+
+const inView = (delay = 0, y = 28) => ({
+  initial:    { opacity: 0, y },
+  whileInView:{ opacity: 1, y: 0 },
+  viewport:   { once: true, margin: "-80px" },
+  transition: { duration: 0.85, ease: EASE, delay } satisfies Transition,
+});
+
+/* ============================================================
+   ROOM DATA
+============================================================ */
+
+interface Room {
+  id: string;
+  title: string;
+  description: string;
+  image: string;
+  features: string[];
+  availability: string;
+}
+
+const ROOMS: Room[] = [
   {
-    title:"Garden Eco Cottage",
-    image:"https://images.unsplash.com/photo-1505693416388-ac5ce068fe85",
-    description:
-    "Surrounded by greenery and peaceful garden spaces, our eco cottages blend natural textures, comfort, and sustainable living.",
-    features:["2 Guests", "Garden View", "Organic Breakfast"],
+    id: "01",
+    title: "Self-Contained Single Suite",
+    description: "A fully self-contained private suite featuring one comfortable bed, en-suite bathroom, and a cozy sitting area — perfect for solo travelers or couples seeking intimacy.",
+    image: Room1,
+    features: ["1 Bed", "En-suite Bathroom", "Sitting Area", "Breakfast Included"],
+    availability: "15 Units Available",
   },
-
   {
-    title:"Heritage Family Suite",
-    image:"https://images.unsplash.com/photo-1522708323590-d24dbb6b0267",
-    description:
-    "Designed for families seeking warmth, culture, and relaxation, with spacious interiors inspired by indigenous heritage.",
-    features:["4 Guests", "Private Lounge", "Nature Balcony"],
+    id: "02",
+    title: "Self-Contained Double Suite",
+    description: "A spacious fully self-contained suite with two comfortable beds, en-suite bathroom, and a generous living area — ideal for families, friends, or shared stays.",
+    image: Room2,
+    features: ["2 Beds", "En-suite Bathroom", "Living Area", "Breakfast Included"],
+    availability: "15 Units Available",
   },
-
-  {
-    title:"Nature Retreat Cabin",
-    image:"https://images.unsplash.com/photo-1505693416388-ac5ce068fe85",
-    description:
-    "Reconnect with nature through calm earthy interiors, quiet surroundings, and immersive eco-living experiences.",
-    features:["2 Guests", "Forest View", "Outdoor Shower"],
-  },
-
 ];
 
-const FeaturedRooms = () => {
+/* ============================================================
+   COMPONENT
+============================================================ */
 
-  return (
-    <section className="featured-rooms section-padding">
+const FeaturedRooms = () => (
+  <section className="featured-rooms" id="rooms">
 
-      <div className="container-custom">
+    {/* ══ SECTION HEADER ══ */}
+    <div className="rooms-header">
+      <motion.span className="rooms-header-label" {...inView(0, 10)}>
+        Rooms & Suites
+      </motion.span>
 
-        {/* SECTION HEADER */}
+      <motion.div
+        className="rooms-header-rule"
+        initial={{ scaleX: 0, opacity: 0 }}
+        whileInView={{ scaleX: 1, opacity: 1 }}
+        viewport={{ once: true }}
+        transition={{ duration: 1.1, ease: EASE, delay: 0.1 } satisfies Transition}
+      />
 
-        <div className="featured-header">
-
-          <span>
-            Stay Experiences
-          </span>
-
-          <h2 className="section-title">
-            Spaces Designed For Comfort,
-            Culture & Nature
-          </h2>
-
-          <p className="section-subtitle">
-            Every stay at Indigenous Seeds Village is thoughtfully designed
-            to blend eco-hospitality, indigenous inspiration,
-            and peaceful retreat experiences.
-          </p>
-
+      <motion.div {...inView(0.2, 20)}>
+        <h2 className="rooms-headline">
+          Find Your Perfect Stay
+        </h2>
+        <div className="rooms-header-actions">
+          <button className="rooms-view-all">
+            View All Rooms
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+              <line x1="5" y1="12" x2="19" y2="12" />
+              <polyline points="12 5 19 12 12 19" />
+            </svg>
+          </button>
         </div>
+      </motion.div>
+    </div>
 
-        {/* ROOMS */}
+    {/* ══ ROOM CARDS GRID ══ */}
+    <div className="rooms-grid">
+      {ROOMS.map((room, index) => (
+        <motion.div
+          key={room.id}
+          className="room-card"
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-60px" }}
+          transition={{ duration: 0.8, ease: EASE, delay: index * 0.15 }}
+        >
+          {/* Image */}
+          <div className="room-image-wrapper">
+            <img src={room.image} alt={room.title} />
+            <span className="room-availability-badge">{room.availability}</span>
+          </div>
 
-        <div className="rooms-wrapper">
+          {/* Content */}
+          <div className="room-content">
+            <h3 className="room-title">{room.title}</h3>
+            <p className="room-description">{room.description}</p>
 
-          {rooms.map((room, index) => (
+            {/* Features */}
+            <div className="room-features">
+              {room.features.map((feature) => (
+                <span key={feature} className="room-feature">
+                  {feature}
+                </span>
+              ))}
+            </div>
 
-            <motion.div
-              className={`room-card ${index % 2 !== 0 ? "reverse" : ""}`}
-              key={index}
-              initial={{ opacity:0, y:50 }}
-              whileInView={{ opacity:1, y:0 }}
-              transition={{ duration:0.8 }}
-              viewport={{ once:true }}
-            >
+            {/* CTA Only - No Price */}
+            <div className="room-footer">
+              <button className="room-book-btn-full">
+                Check Availability
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                  <line x1="5" y1="12" x2="19" y2="12" />
+                  <polyline points="12 5 19 12 12 19" />
+                </svg>
+              </button>
+            </div>
+          </div>
+        </motion.div>
+      ))}
+    </div>
 
-              {/* IMAGE */}
-
-              <div className="room-image">
-
-                <img
-                  src={room.image}
-                  alt={room.title}
-                />
-
-              </div>
-
-              {/* CONTENT */}
-
-              <div className="room-content">
-
-                <div className="room-tag">
-                  Eco Luxury Stay
-                </div>
-
-                <h3>
-                  {room.title}
-                </h3>
-
-                <p>
-                  {room.description}
-                </p>
-
-                {/* FEATURES */}
-
-                <div className="room-features">
-
-                  {room.features.map((feature, idx) => (
-
-                    <span key={idx}>
-                      {feature}
-                    </span>
-
-                  ))}
-
-                </div>
-
-                <div className="room-buttons">
-
-                  <button className="primary-btn">
-                    Book Room
-                  </button>
-
-                  <button className="secondary-btn">
-                    Explore Stay
-                  </button>
-
-                </div>
-
-              </div>
-
-            </motion.div>
-
-          ))}
-
-        </div>
-
-      </div>
-
-      {/* DECOR */}
-
-      <div className="room-bg-shape" />
-
-    </section>
-  );
-};
+  </section>
+);
 
 export default FeaturedRooms;

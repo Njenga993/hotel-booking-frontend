@@ -1,109 +1,145 @@
 import { motion } from "framer-motion";
+import { useState } from "react";
 import "./gallery.css";
 
-const galleryImages = [
+// Import your real images
+import natureRetreats from "../../assets/images/agro3.webp";
+import organicCuisine from "../../assets/images/fresh.jpg";
+import traditionalDining from "../../assets/images/rustic.jpg";
+import outdoorExperiences from "../../assets/images/seedschool.webp";
+import ecoLuxuryRooms from "../../assets/images/room2.jpeg";
+import seedHeritage from "../../assets/images/seeds.webp";
 
-  {
-    image:"https://images.unsplash.com/photo-1506744038136-46273834b3fb",
-    title:"Nature Retreats",
-    large:true,
-  },
+/* ═══════════════════════════════
+   FOCUS CARDS COMPONENT
+═══════════════════════════════ */
 
-  {
-    image:"https://images.unsplash.com/photo-1546069901-ba9599a7e63c",
-    title:"Organic Cuisine",
-  },
+interface FocusCardProps {
+  cards: {
+    title: string;
+    src: string;
+  }[];
+}
 
-  {
-    image:"https://images.unsplash.com/photo-1490645935967-10de6ba17061",
-    title:"Traditional Dining",
-  },
-
-  {
-    image:"https://images.unsplash.com/photo-1500530855697-b586d89ba3ee",
-    title:"Outdoor Experiences",
-    large:true,
-  },
-
-  {
-    image:"https://images.unsplash.com/photo-1522708323590-d24dbb6b0267",
-    title:"Eco Luxury Rooms",
-  },
-
-  {
-    image:"https://images.unsplash.com/photo-1464226184884-fa280b87c399",
-    title:"Seed Heritage",
-  },
-
-];
-
-const Gallery = () => {
+const FocusCards = ({ cards }: FocusCardProps) => {
+  const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
 
   return (
-    <section className="gallery-section section-padding">
+    <div className="focus-cards-grid">
+      {cards.map((card, index) => {
+        const isOther = hoveredIndex !== null && hoveredIndex !== index;
 
-      <div className="container-custom">
+        return (
+          <div
+            key={card.title}
+            className="focus-card-wrapper"
+            style={{ zIndex: hoveredIndex === index ? 10 : 1 }}
+            onMouseEnter={() => setHoveredIndex(index)}
+            onMouseLeave={() => setHoveredIndex(null)}
+          >
+            <motion.div
+              className="focus-card"
+              animate={{
+                scale: isOther ? 0.93 : 1,
+                opacity: isOther ? 0.55 : 1,
+              }}
+              transition={{
+                duration: 0.4,
+                ease: [0.22, 1, 0.36, 1],
+              }}
+            >
+              <div className="focus-card-image">
+                <img src={card.src} alt={card.title} loading="lazy" />
+              </div>
+              <div className="focus-card-overlay">
+                <h3 className="focus-card-title">{card.title}</h3>
+              </div>
+            </motion.div>
+          </div>
+        );
+      })}
+    </div>
+  );
+};
 
-        {/* HEADER */}
+/* ═══════════════════════════════
+   GALLERY SECTION
+═══════════════════════════════ */
 
-        <div className="gallery-header">
+const Gallery = () => {
+  const cards = [
+    {
+      title: "Nature Retreats",
+      src: natureRetreats,
+    },
+    {
+      title: "Organic Cuisine",
+      src: organicCuisine,
+    },
+    {
+      title: "Traditional Dining",
+      src: traditionalDining,
+    },
+    {
+      title: "Outdoor Experiences",
+      src: outdoorExperiences,
+    },
+    {
+      title: "Eco Luxury Rooms",
+      src: ecoLuxuryRooms,
+    },
+    {
+      title: "Seed Heritage",
+      src: seedHeritage,
+    },
+  ];
 
-          <span>
-            Visual Journey
-          </span>
+  return (
+    <section className="gallery-section" id="gallery">
 
-          <h2 className="section-title">
+      {/* ══ SECTION HEADER ══ */}
+      <div className="gallery-header">
+        <motion.span
+          className="gallery-header-label"
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6 }}
+        >
+          Visual Journey
+        </motion.span>
+
+        <motion.div
+          className="gallery-header-rule"
+          initial={{ scaleX: 0, opacity: 0 }}
+          whileInView={{ scaleX: 1, opacity: 1 }}
+          viewport={{ once: true }}
+          transition={{ duration: 1.1, delay: 0.1 }}
+        />
+
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6, delay: 0.2 }}
+        >
+          <h2 className="gallery-headline">
             Explore The Atmosphere
+            <br />
             Of Indigenous Seeds Village
           </h2>
-
-          <p className="section-subtitle">
+          <p className="gallery-subtitle">
             Discover peaceful landscapes, organic dining,
             eco-inspired spaces, and immersive cultural experiences
             through moments captured across the village.
           </p>
-
-        </div>
-
-        {/* GALLERY GRID */}
-
-        <div className="gallery-grid">
-
-          {galleryImages.map((item, index) => (
-
-            <motion.div
-              key={index}
-              className={`gallery-item ${item.large ? "large" : ""}`}
-              initial={{ opacity:0, y:50 }}
-              whileInView={{ opacity:1, y:0 }}
-              transition={{ duration:0.7 }}
-              viewport={{ once:true }}
-            >
-
-              <img
-                src={item.image}
-                alt={item.title}
-              />
-
-              <div className="gallery-overlay">
-
-                <h3>
-                  {item.title}
-                </h3>
-
-              </div>
-
-            </motion.div>
-
-          ))}
-
-        </div>
-
+        </motion.div>
       </div>
 
-      {/* DECOR */}
-
-      <div className="gallery-gradient" />
+      {/* ══ FOCUS CARDS ══ */}
+      <div className="gallery-cards-container">
+        <FocusCards cards={cards} />
+      </div>
 
     </section>
   );

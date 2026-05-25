@@ -1,313 +1,334 @@
-.hero-section{
-  position:relative;
-  min-height:100vh;
-  display:flex;
-  align-items:center;
-  overflow:hidden;
-  background:black;
+/* ===========================
+   HERO SECTION
+=========================== */
+
+.hero-section {
+  position: relative;
+  height: 100vh;
+  min-height: 700px;
+  width: 100%;
+  overflow: hidden;
+  background: #0a1a14;
 }
 
-/* =========================
+/* ===========================
    BACKGROUND
-========================= */
+=========================== */
 
-.hero-video{
-  position:absolute;
-  inset:0;
-  width:100%;
-  height:100%;
-  object-fit:cover;
+.hero-bg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 0;
 }
 
-.hero-bg-overlay{
-  position:absolute;
-  inset:0;
-  background:
-  linear-gradient(
-    to right,
-    rgba(31,77,54,0.55),
-    rgba(31,77,54,0.25),
-    rgba(248,244,236,0.08)
+.hero-bg img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.hero-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    135deg,
+    rgba(10, 26, 20, 0.85) 0%,
+    rgba(10, 26, 20, 0.40) 40%,
+    rgba(10, 26, 20, 0.70) 100%
   );
-  z-index:1;
+  z-index: 1;
 }
-/* =========================
+
+/* ===========================
    CONTAINER
-========================= */
+=========================== */
 
-.hero-container{
-  position:relative;
-  z-index:2;
-  display:grid;
-  grid-template-columns:1.1fr 1fr;
-  gap:60px;
-  align-items:center;
-  padding-top:120px;
+.hero-container {
+  position: relative;
+  z-index: 2;
+  max-width: 1440px;
+  margin: 0 auto;
+  padding: 60px 60px 80px;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
 }
 
-/* =========================
-   LEFT CONTENT
-========================= */
+/* ===========================
+   HERO CONTENT
+=========================== */
 
-.hero-content{
-  color:white;
+.hero-content {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  padding-top: 60px;
 }
 
-.hero-tag{
-  display:inline-block;
-  padding:10px 18px;
-  border:1px solid rgba(255,255,255,0.2);
-  border-radius:999px;
-  margin-bottom:25px;
-  backdrop-filter:blur(10px);
-  font-size:14px;
-  letter-spacing:1px;
+.hero-text {
+  max-width: 600px;
 }
 
-.hero-content h1{
-  font-size:clamp(3.5rem,7vw,6.5rem);
-  line-height:1.05;
-  color:white;
-  margin-bottom:30px;
+.hero-subtitle {
+  display: block;
+  font-size: 12px;
+  letter-spacing: 4px;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.4);
+  margin-bottom: 16px;
 }
 
-.hero-content p{
-  color:rgba(255,255,255,0.9);
-  max-width:600px;
-  margin-bottom:40px;
-  font-size:18px;
+.hero-text h1 {
+  font-size: clamp(3.5rem, 5.5vw, 5rem);
+  line-height: 1.05;
+  color: #ffffff;
+  font-weight: 400;
+  letter-spacing: -1px;
+  margin-bottom: 24px;
 }
 
-/* =========================
-   BUTTONS
-========================= */
-
-.hero-buttons{
-  display:flex;
-  gap:20px;
-  flex-wrap:wrap;
-  margin-bottom:60px;
+.hero-text h1 br {
+  display: block;
 }
 
-.hero-buttons .secondary-btn{
-  border-color:white;
-  color:white;
+.hero-text p {
+  color: rgba(255, 255, 255, 0.6);
+  font-size: 18px;
+  line-height: 1.6;
+  max-width: 450px;
+  margin-bottom: 40px;
 }
 
-.hero-buttons .secondary-btn:hover{
-  background:white;
-  color:black;
+.btn-explore {
+  padding: 14px 36px;
+  background: #1a2e22;
+  color: #ffffff;
+  border: none;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: background 0.3s ease;
 }
 
-/* =========================
-   STATS
-========================= */
-
-.hero-stats{
-  display:flex;
-  gap:50px;
-  flex-wrap:wrap;
+.btn-explore:hover {
+  background: #2c4a3a;
 }
 
-.hero-stats h3{
-  color:white;
-  font-size:2rem;
-  margin-bottom:5px;
+/* ===========================
+   BOOKING WIDGET
+=========================== */
+
+.booking-widget {
+  position: absolute;
+  bottom: 80px;
+  right: 60px;
+  display: flex;
+  align-items: center;
+  background: rgba(255, 255, 255, 0.95);
+  border-radius: 4px;
+  padding: 12px 16px 12px 24px;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+  gap: 24px;
 }
 
-.hero-stats span{
-  color:rgba(255,255,255,0.7);
+.booking-field {
+  display: flex;
+  flex-direction: column;
+  min-width: 120px;
 }
 
-/* =========================
-   RIGHT VISUALS
-========================= */
-
-.hero-visuals{
-  position:relative;
-  height:700px;
+.booking-field label {
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: #8a8a8a;
+  margin-bottom: 4px;
 }
 
-.hero-main-image{
-  width:100%;
-  height:100%;
-  border-radius:40px;
-  overflow:hidden;
-  border:1px solid rgba(255,255,255,0.1);
-  box-shadow:0 30px 60px rgba(0,0,0,0.3);
+.field-value {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 14px;
+  font-weight: 500;
+  color: #1a1a1a;
 }
 
-.hero-main-image img{
-  width:100%;
-  height:100%;
-  object-fit:cover;
+.icon-calendar,
+.icon-chevron {
+  color: #8a8a8a;
 }
 
-/* =========================
-   FLOATING CARDS
-========================= */
-
-.floating-card{
-  position:absolute;
-  display:flex;
-  align-items:center;
-  gap:15px;
-  background:rgba(255,255,255,0.22);
-  backdrop-filter:blur(20px);
-  border:1px solid rgba(255,255,255,0.1);
-  border-radius:24px;
-  padding:16px;
-  width:280px;
-  animation:floatCard 4s ease-in-out infinite;
+.booking-sep {
+  width: 1px;
+  height: 40px;
+  background: #e5e5e5;
 }
 
-.floating-card img{
-  width:70px;
-  height:70px;
-  border-radius:18px;
-  object-fit:cover;
+.btn-check-availability {
+  padding: 14px 24px;
+  background: #1a2e22;
+  color: #ffffff;
+  border: none;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  cursor: pointer;
+  transition: background 0.3s ease;
+  white-space: nowrap;
 }
 
-.floating-card h4{
-  color:white;
-  margin-bottom:5px;
+.btn-check-availability:hover {
+  background: #2c4a3a;
 }
 
-.floating-card p{
-  color:rgba(255,255,255,0.7);
-  font-size:14px;
+/* ===========================
+   SIDE GALLERY
+=========================== */
+
+.side-gallery {
+  position: absolute;
+  right: 60px;
+  top: 50%;
+  transform: translateY(-50%);
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
 }
 
-.card-one{
-  bottom:80px;
-  left:-50px;
+.gallery-item {
+  width: 80px;
+  height: 100px;
+  border-radius: 4px;
+  overflow: hidden;
+  cursor: pointer;
+  transition: transform 0.3s ease;
 }
 
-.card-two{
-  top:60px;
-  right:-40px;
-  animation-delay:2s;
+.gallery-item:hover {
+  transform: scale(1.05);
 }
 
-/* =========================
-   FLOAT ANIMATION
-========================= */
-
-@keyframes floatCard{
-
-  0%{
-    transform:translateY(0px);
-  }
-
-  50%{
-    transform:translateY(-10px);
-  }
-
-  100%{
-    transform:translateY(0px);
-  }
-
+.gallery-item img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
 }
 
-/* =========================
+/* ===========================
    SCROLL INDICATOR
-========================= */
+=========================== */
 
-.scroll-indicator{
-  position:absolute;
-  bottom:40px;
-  left:50%;
-  transform:translateX(-50%);
-  z-index:3;
+.scroll-indicator {
+  position: absolute;
+  bottom: 40px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 3;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
 }
 
-.scroll-indicator span{
-  width:30px;
-  height:50px;
-  border:2px solid white;
-  border-radius:999px;
-  display:block;
-  position:relative;
+.scroll-indicator span {
+  color: rgba(255, 255, 255, 0.3);
+  font-size: 9px;
+  letter-spacing: 3px;
+  text-transform: uppercase;
 }
 
-.scroll-indicator span::before{
-  content:'';
-  position:absolute;
-  top:10px;
-  left:50%;
-  transform:translateX(-50%);
-  width:6px;
-  height:6px;
-  border-radius:50%;
-  background:white;
-  animation:scrollDot 1.5s infinite;
+.scroll-line {
+  width: 1px;
+  height: 40px;
+  background: rgba(255, 255, 255, 0.15);
+  position: relative;
+  overflow: hidden;
 }
 
-@keyframes scrollDot{
+.scroll-dot {
+  width: 100%;
+  height: 10px;
+  background: #ffffff;
+  border-radius: 1px;
+  animation: scrollDown 2s ease-in-out infinite;
+}
 
-  0%{
-    opacity:1;
-    transform:translateX(-50%) translateY(0);
+@keyframes scrollDown {
+  0% {
+    transform: translateY(-10px);
   }
-
-  100%{
-    opacity:0;
-    transform:translateX(-50%) translateY(15px);
+  100% {
+    transform: translateY(40px);
   }
-
 }
 
-/* =========================
+/* ===========================
    RESPONSIVE
-========================= */
+=========================== */
 
-@media(max-width:1200px){
-
-  .hero-container{
-    grid-template-columns:1fr;
+@media (max-width: 1200px) {
+  .side-gallery {
+    display: none;
   }
-
-  .hero-visuals{
-    height:600px;
-  }
-
 }
 
-@media(max-width:768px){
-
-  .hero-section{
-    padding:140px 0 80px;
+@media (max-width: 992px) {
+  .hero-container {
+    padding: 40px 30px 60px;
   }
-
-  .hero-container{
-    gap:50px;
+  
+  .booking-widget {
+    position: static;
+    flex-wrap: wrap;
+    background: rgba(255, 255, 255, 0.95);
+    padding: 16px;
+    gap: 12px;
+    margin-top: 20px;
   }
-
-  .hero-content h1{
-    font-size:3.5rem;
+  
+  .booking-field {
+    min-width: 100px;
+    flex: 1;
   }
-
-  .hero-content p{
-    font-size:16px;
+  
+  .btn-check-availability {
+    width: 100%;
   }
+}
 
-  .hero-visuals{
-    height:450px;
+@media (max-width: 768px) {
+  .hero-container {
+    padding: 20px 16px;
   }
-
-  .floating-card{
-    width:230px;
-    padding:12px;
+  
+  .hero-content {
+    padding-top: 20px;
   }
-
-  .card-one{
-    left:0;
-    bottom:20px;
+  
+  .hero-text h1 {
+    font-size: 2.5rem;
   }
-
-  .card-two{
-    right:0;
-    top:20px;
+  
+  .hero-text p {
+    font-size: 16px;
   }
-
+  
+  .booking-widget {
+    flex-direction: column;
+    align-items: stretch;
+  }
+  
+  .booking-field {
+    min-width: auto;
+  }
+  
+  .booking-sep {
+    display: none;
+  }
 }
